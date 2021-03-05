@@ -1,6 +1,7 @@
 """
 1299. Replace Elements with Greatest Element on Right Side
-https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+- https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+- https://leetcode.com/explore/featured/card/fun-with-arrays/511/in-place-operations/3259/
 """
 
 
@@ -40,3 +41,18 @@ class Solution:
                 result.append(maxVal)
         result.reverse()
         return result
+
+# Method 3
+# Best in place
+class Solution:
+    def replaceElements(self, arr: List[int]) -> List[int]:
+        maxNum = arr[-1]
+        arr[len(arr) - 1] = -1
+        for i in range(len(arr) - 2, -1, -1):
+            if arr[i] > maxNum:
+                tmp = arr[i]
+                arr[i] = maxNum
+                maxNum = tmp
+            else:
+                arr[i] = maxNum
+        return arr
