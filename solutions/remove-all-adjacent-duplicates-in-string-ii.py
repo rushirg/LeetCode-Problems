@@ -23,3 +23,18 @@ class Solution:
             result += ch[0]
         return result
 
+
+# Slight variation in above method
+# do not push the same character in the stack instead increment its value
+class Solution:
+    def removeDuplicates(self, s: str, k: int) -> str:
+        myStack = [['#', 0]]
+        for ch in s:
+            if myStack[-1][0] == ch:
+                myStack[-1][1] += 1
+                if myStack[-1][1] == k:
+                    myStack.pop()
+            else:
+                myStack.append([ch, 1])
+
+        return "".join(c * k for c, k in myStack)
