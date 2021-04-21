@@ -4,13 +4,6 @@ https://leetcode.com/problems/binary-tree-inorder-traversal/
 """
 
 # Solution 1
-
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]:
         result = []
@@ -22,4 +15,26 @@ class Solution:
                 inorder(root.right, result)
 
         inorder(root, result)
+        return result
+
+
+
+# Method 2
+# Using Stack - Iterative
+class Solution(object):
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        stack = []
+        result = []
+        node = root
+        while node != None or stack:
+            while node != None:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            result.append(node.val)
+            node = node.right
         return result
